@@ -15,6 +15,10 @@ public class BranchInfo
     this.bankName = bankName;
     this.branchName = branchName;
     this.ifscCode = ifscCode;
+    this.address = address;
+    this.city = city;
+    this.district = district;
+    this.state = state;
   }
 
   public String getBankName() {
