@@ -19,7 +19,7 @@ public class BankInformationController
   {
   }
 
-  @GetMapping(value="/branch_info", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value="/branch_info")
   public ResponseEntity getBranchInfo(@RequestParam(value="bank_name", required=false) String bankName, @RequestParam(value="city", required=false) String city, @RequestParam(value="ifsc", required=false) String ifsc  )
   {
     if (ifsc == null && (bankName != null && city != null)){
