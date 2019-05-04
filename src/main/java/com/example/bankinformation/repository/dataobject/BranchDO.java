@@ -27,11 +27,18 @@ public class BranchDO
   private String state;
 
   @ManyToOne
-  @JoinColumn(name = "id")
   private BankDO bank;
 
   public BranchDO()
   {}
+
+  public BankDO getBank() {
+    return bank;
+  }
+
+  public void setBank(BankDO bank) {
+    this.bank = bank;
+  }
 
   public String getIfsc() {
     return ifsc;
