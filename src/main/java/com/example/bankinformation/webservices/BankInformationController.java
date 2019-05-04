@@ -23,7 +23,7 @@ public class BankInformationController
   }
 
   @GetMapping(value="/branch_info")
-  public ResponseEntity getBranchInfo(@RequestParam(value="bank_name") String bankName, @RequestParam(value="city") String city, @RequestParam(value="ifsc") String ifsc  )
+  public ResponseEntity getBranchInfo(@RequestParam(value="bank_name", required=false) String bankName, @RequestParam(value="city", required=false) String city, @RequestParam(value="ifsc", required=false) String ifsc  )
   {
     if (ifsc != null && (bankName == null && city == null )){
        List<BranchInfo> branches = branchInfoAccessService.getBranchDetailsProvidedBankNameAndCity(bankName, city);
