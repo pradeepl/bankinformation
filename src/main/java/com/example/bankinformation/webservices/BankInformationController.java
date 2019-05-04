@@ -1,6 +1,9 @@
 package com.example.bankinformation.webservices;
 
 import com.example.bankinformation.objectmodel.BankInfo;
+import com.example.bankinformation.repository.dataaccess.BranchDAO;
+import com.example.bankinformation.repository.dataobject.BranchDO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BankInformationController
 {
+  @Autowired
+  BranchDAO branchInfoAccessService;
+
   public BankInformationController()
   {
     //nothing
@@ -23,6 +29,7 @@ public class BankInformationController
   @GetMapping(value="/bank")
     public ResponseEntity getBankInfo(@RequestParam(value="bankName") String bankName)
   {
-    return ResponseEntity.ok(new BankInfo("HDFC", "JP Nagar", "HDFC00009", 12345));
+    BranchDO branchDO = branchInfoAccessService.getBranchDetailsProvidedIfscCode(bankName);
+    return ResponseEntity.ok("Bank Name = " + branchDO.getBranchName());
   }
 }
