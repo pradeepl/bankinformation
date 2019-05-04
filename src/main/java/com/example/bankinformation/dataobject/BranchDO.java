@@ -8,6 +8,7 @@ public class BranchDO
 {
 
   @Column(name = "IFSC")
+  @Id
   private String ifsc;
 
   @Column(name = "BRANCH")
