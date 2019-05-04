@@ -40,7 +40,7 @@ public class BankInformationController
         return constructNotFoundMessage();
       }
       else{
-        System.out.println("Branch " + branchInfo.getBranchName() + " belonging to bank " + branchInfo.getBankName() +  "found for the IFSC code: " + ifsc);
+        System.out.println("WS: Branch " + branchInfo.getBranchName() + " belonging to bank " + branchInfo.getBankName() +  "found for the IFSC code: " + ifsc);
         return ResponseEntity.ok(branchInfo);
       }
     }
