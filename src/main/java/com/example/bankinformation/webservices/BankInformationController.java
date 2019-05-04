@@ -4,11 +4,7 @@ import com.example.bankinformation.objectmodel.BranchInfo;
 import com.example.bankinformation.repository.dataaccess.BranchDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +18,7 @@ public class BankInformationController
   {
   }
 
-  @GetMapping(value="/branch_info")
+  @GetMapping(value="/branch_info", produces = "application/json")
   public ResponseEntity getBranchInfo(@RequestParam(value="bank_name", required=false) String bankName, @RequestParam(value="city", required=false) String city, @RequestParam(value="ifsc", required=false) String ifsc  )
   {
     if (ifsc == null && (bankName != null && city != null)){
