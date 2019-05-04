@@ -9,13 +9,13 @@ import org.springframework.stereotype.*;
 @SpringBootApplication
 public class DemoApplication {
 
-	@RequestMapping("/")
+	/*@RequestMapping("/")
 	@ResponseBody
 	String home() {
 		return "Hello World!";
 	}
-
+*/
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+	//	SpringApplication.run(DemoApplication.class, args);
 	}
 }
