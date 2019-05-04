@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BankInformationController
 {
+  public BankInformationController()
+  {
+    //nothing
+  }
+
   @GetMapping(value="/")
   public ResponseEntity serviceInfo()
   {
