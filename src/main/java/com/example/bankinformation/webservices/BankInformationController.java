@@ -21,20 +21,26 @@ public class BankInformationController
        List<BranchInfo> branches = branchInfoAccessService.getBranchDetailsProvidedBankNameAndCity(bankName, city);
        if (branches == null)
        {
+         //Heroku dumps the contents printed on the STDOUT to the heroku logs. So using System.out.println
+         System.out.println("WS: No branch found for the bank: " + bankName + " in city: " + city);
          return constructNotFoundMessage();
        }
        else
        {
+          System.out.println("WS: " + branches.size() + " branches found for the bank: " + bankName + " in city: " + city);
           return ResponseEntity.ok(branches);
        }
     }
     else if ( ifsc != null && (bankName == null && city == null ))
     {
       BranchInfo branchInfo = branchInfoAccessService.getBranchDetailsProvidedIfscCode(ifsc);
+
       if (branchInfo == null){
+        System.out.println("WS: No branch found for the IFSC code: " + ifsc);
         return constructNotFoundMessage();
       }
       else{
+        System.out.println("Branch " + branchInfo.getBranchName() + " belonging to bank " + branchInfo.getBankName() +  "found for the IFSC code: " + ifsc);
         return ResponseEntity.ok(branchInfo);
       }
     }
