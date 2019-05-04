@@ -1,4 +1,4 @@
-package com.example.bankinformation.dataobject;
+package com.example.bankinformation.repository.dataobject;
 
 import javax.persistence.*;
 
