@@ -1,15 +1,16 @@
 package com.example.bankinformation.webservices;
 
 import com.example.bankinformation.objectmodel.BranchInfo;
-import com.example.bankinformation.objectmodel.SearchCriteria;
 import com.example.bankinformation.repository.dataaccess.BranchDAO;
-import com.example.bankinformation.repository.dataobject.BranchDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class BankInformationController
@@ -19,17 +20,40 @@ public class BankInformationController
 
   public BankInformationController()
   {
-    //nothing
   }
 
-  @GetMapping(value="/branches")
-  public ResponseEntity getBranchInfo(@RequestBody SearchCriteria criteria)
+  @GetMapping(value="/branch_info")
+  public ResponseEntity getBranchInfo(@RequestParam(value="bank_name") String bankName, @RequestParam(value="city") String city, @RequestParam(value="ifsc") String ifsc  )
   {
-    return ResponseEntity.ok("Get information about bank and their branches given the IFSC code. " + criteria.getBankName() + ", " + criteria.getCity() );
+    if (ifsc != null && (bankName == null && city == null )){
+       List<BranchInfo> branches = branchInfoAccessService.getBranchDetailsProvidedBankNameAndCity(bankName, city);
+       if (branches == null)
+       {
+         return constructNotFoundMessage();
+       }
+       else
+       {
+          return ResponseEntity.ok(branches);
+       }
+    }
+    else if ( ifsc == null && (bankName != null && city != null))
+    {
+      BranchInfo branchInfo = branchInfoAccessService.getBranchDetailsProvidedIfscCode(bankName);
+      if (branchInfo == null){
+        return constructNotFoundMessage();
+      }
+      else{
+        return ResponseEntity.ok(branchInfo);
+      }
+    }
+    else
+    {
+      return ResponseEntity.badRequest().body("Invalid Search Criteria Provided");
+    }
   }
 
-  @GetMapping(value="/branch")
-    public ResponseEntity getBranchInfo(@RequestParam(value="bankName") String bankName)
+  @GetMapping(value="/branch_info")
+  public ResponseEntity getBranchInfo(@RequestParam(value="bank_name") String bankName)
   {
     BranchInfo branchInfo = branchInfoAccessService.getBranchDetailsProvidedIfscCode(bankName);
 
@@ -38,5 +62,10 @@ public class BankInformationController
       return ResponseEntity.notFound().build();
     }
     return ResponseEntity.ok(branchInfo);
+  }
+
+  private ResponseEntity constructNotFoundMessage()
+  {
+    return ResponseEntity.notFound().build();
   }
 }
