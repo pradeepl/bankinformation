@@ -3,6 +3,7 @@ package com.example.bankinformation.webservices;
 import com.example.bankinformation.objectmodel.BranchInfo;
 import com.example.bankinformation.repository.dataaccess.BranchDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class BankInformationController
   {
   }
 
-  @GetMapping(value="/branch_info", produces = "application/json")
+  @GetMapping(value="/branch_info", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity getBranchInfo(@RequestParam(value="bank_name", required=false) String bankName, @RequestParam(value="city", required=false) String city, @RequestParam(value="ifsc", required=false) String ifsc  )
   {
     if (ifsc == null && (bankName != null && city != null)){
