@@ -25,7 +25,7 @@ public class BankInformationController
   @GetMapping(value="/branch_info")
   public ResponseEntity getBranchInfo(@RequestParam(value="bank_name", required=false) String bankName, @RequestParam(value="city", required=false) String city, @RequestParam(value="ifsc", required=false) String ifsc  )
   {
-    if (ifsc != null && (bankName == null && city == null )){
+    if (ifsc == null && (bankName != null && city != null)){
        List<BranchInfo> branches = branchInfoAccessService.getBranchDetailsProvidedBankNameAndCity(bankName, city);
        if (branches == null)
        {
@@ -36,9 +36,9 @@ public class BankInformationController
           return ResponseEntity.ok(branches);
        }
     }
-    else if ( ifsc == null && (bankName != null && city != null))
+    else if ( ifsc != null && (bankName == null && city == null ))
     {
-      BranchInfo branchInfo = branchInfoAccessService.getBranchDetailsProvidedIfscCode(bankName);
+      BranchInfo branchInfo = branchInfoAccessService.getBranchDetailsProvidedIfscCode(ifsc);
       if (branchInfo == null){
         return constructNotFoundMessage();
       }
