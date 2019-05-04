@@ -1,6 +1,6 @@
 package com.example.bankinformation.webservices;
 
-import com.example.bankinformation.objectmodel.BankInfo;
+import com.example.bankinformation.objectmodel.BranchInfo;
 import com.example.bankinformation.repository.dataaccess.BranchDAO;
 import com.example.bankinformation.repository.dataobject.BranchDO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,12 @@ public class BankInformationController
   @GetMapping(value="/bank")
     public ResponseEntity getBankInfo(@RequestParam(value="bankName") String bankName)
   {
-    BranchDO branchDO = branchInfoAccessService.getBranchDetailsProvidedIfscCode(bankName);
-    return ResponseEntity.ok("Bank Name = " + branchDO.getBranchName());
+    BranchInfo branchInfo = branchInfoAccessService.getBranchDetailsProvidedIfscCode(bankName);
+
+    if (branchInfo == null)
+    {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(branchInfo);
   }
 }
