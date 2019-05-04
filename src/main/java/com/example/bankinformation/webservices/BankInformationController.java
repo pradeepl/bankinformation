@@ -52,17 +52,6 @@ public class BankInformationController
     }
   }
 
-  @GetMapping(value="/branch_info")
-  public ResponseEntity getBranchInfo(@RequestParam(value="bank_name") String bankName)
-  {
-    BranchInfo branchInfo = branchInfoAccessService.getBranchDetailsProvidedIfscCode(bankName);
-
-    if (branchInfo == null)
-    {
-      return ResponseEntity.notFound().build();
-    }
-    return ResponseEntity.ok(branchInfo);
-  }
 
   private ResponseEntity constructNotFoundMessage()
   {
