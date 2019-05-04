@@ -11,7 +11,7 @@ import java.util.List;
 public interface BankBranchInformationRepository extends CrudRepository<BranchDO, String>
 {
 
-  @Query("SELECT br FROM BranchDO br WHERE UPPER(br.city) = UPPER(?2)")
+  @Query("SELECT br FROM BranchDO br WHERE UPPER(br.bank.name) = UPPER(?1) AND UPPER(br.city) = UPPER(?2)")
   List<BranchDO> getBranchDetailsGivenBankNameAndCity(String bankName, String city);
 
 
