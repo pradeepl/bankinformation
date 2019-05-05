@@ -108,8 +108,8 @@ select b.name, br.branch, br.city, br.address, br.city, br.district, br.state fr
 (11 rows)
 ```
 ### Indexes Added:
-CREATE INDEX idx_branches_01 ON branches (bank_id, UPPER(branch), UPPER(city));
-CREATE index idx_banks_01 ON banks (UPPER(name));
+1. CREATE INDEX idx_branches_01 ON branches (bank_id, UPPER(branch), UPPER(city));
+2. CREATE index idx_banks_01 ON banks (UPPER(name));
 
 #### Query Plan after adding above indexes
 ```
