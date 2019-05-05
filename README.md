@@ -1,7 +1,9 @@
 Project Definition:
+-------------------
 Write a simple restful webservice which can retrieve the information about the bank and it's branches provided the ifsc code or bank name and the city.
 
 Frameworks used:
+----------------
 1. Spring boot (Version: v2.1.4.RELEASE) for defining the Restful webservices.
 2. Postgresql (Version: 11.2) is used as the relational DB.
 3. Heroku (Version: v11.14.0) is used for deploying the application.
