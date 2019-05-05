@@ -83,4 +83,27 @@ Any invalid Search done based on combinations other than the above 2 will result
 ### Example:
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=ABNA0100318&city=MUMBAI  
 Response code : 400  
-Response Body : Invalid Search Criteria Provided  
+Response Body : Invalid Search Criteria Provided 
+
+
+# Other optimizations Done
+## Query performance is improved for the search based on bank name and city by adding Index
+### Underlying query that gets executed
+select b.name, br.branch, br.city, br.address, br.city, br.district, br.state from banks b, branches br where br.bank_id = b.id and  upper(b.name) = 'ABHYUDAYA COOPERATIVE BANK LIMITED' and UPPER(city) = 'MUMBAI';
+
+                                                      QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------
+ Nested Loop  (cost=0.00..3057.67 rows=4 width=52) (actual time=0.169..126.418 rows=55 loops=1)
+   Join Filter: (b.id = br.bank_id)
+   Rows Removed by Join Filter: 3641
+   ->  Seq Scan on banks b  (cost=0.00..2.68 rows=1 width=36) (actual time=0.142..0.280 rows=1 loops=1)
+         Filter: (upper((name)::text) = 'ABHYUDAYA COOPERATIVE BANK LIMITED'::text)
+         Rows Removed by Filter: 169
+   ->  Seq Scan on branches br  (cost=0.00..3052.76 rows=638 width=32) (actual time=0.024..125.258 rows=3696 loops=1)
+         Filter: (upper((city)::text) = 'MUMBAI'::text)
+         Rows Removed by Filter: 124161
+ Planning Time: 1.229 ms
+ Execution Time: 126.496 ms
+(11 rows)
+
+
