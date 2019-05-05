@@ -19,6 +19,7 @@ https://indian-bank-information.herokuapp.com/
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=<IFSC_CODE_INPUT>  
 HTTP Method   : GET  
 Response code : 200 - When a match is found  
+
                 404 - When no match is found  
 Response body : JSON containing the Bank and Branch details on 200 Response code  
 
