@@ -16,6 +16,7 @@ https://indian-bank-information.herokuapp.com/
 
 # Restwebservice endpoint:
 ## Search based on IFSC code:
+Note: The search performed is a case insensitive search
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=<IFSC_CODE_INPUT>  
 HTTP Method   : GET  
 Response code : 200 - When a match is found  
@@ -39,6 +40,7 @@ Response body :
 ```
 
 ## Search Based on Bank Name and City:
+Note: The search performed is a case insensitive search
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?bank_name=<BANK_NAME_INPUT>&city=<CITY_INPUT>  
 HTTP Method   : GET  
 Response code : 200 - When match is found  
