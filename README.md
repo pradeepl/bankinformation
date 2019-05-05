@@ -49,6 +49,7 @@ Response body : JSON containing the List of Branch details on 200 Response code
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?bank_name=ABHYUDAYA COOPERATIVE BANK LIMITED&city=MUMBAI  
 Response code : 200   
 Response body : 
+```json
 [
 {
 "bankName": "ABHYUDAYA COOPERATIVE BANK LIMITED",
@@ -74,6 +75,7 @@ Response body :
 .
 .
 ]
+```
 
 ## Invalid Search based on other combinations:
 Any invalid Search done based on combinations other than the above 2 will result in 400 (Bad Request) Response code with message "Invalid Search Criteria Provided".
