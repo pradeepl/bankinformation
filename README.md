@@ -1,35 +1,28 @@
-Project Definition:
--------------------
+# Project Definition:
 Write a simple restful webservice which can retrieve the information about the bank and it's branches provided the ifsc code or bank name and the city.
 
-Frameworks used:
-----------------
+# Frameworks used:
 1. Spring boot (Version: v2.1.4.RELEASE) for defining the Restful webservices.
 2. Postgresql (Version: 11.2) is used as the relational DB.
 3. Heroku (Version: v11.14.0) is used for deploying the application.
 4. Maven (Version: 3.6.1) is used for the project build. 
 
-Source for the bank information:
---------------------------------
+# Source for the bank information:
 The static data holding the information about the variou banks and their branches are source controlled at https://github.com/snarayanank2/indian_banks.
 The above data has been imported to the postgresql associated to the heroku application. 
 
-Heroku application endpoint:
-----------------------------
+# Heroku application endpoint:
 https://indian-bank-information.herokuapp.com/
 
-Restwebservice endpoint:
-------------------------
-1. Search based on IFSC code:
------------------------------
-Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=<IFSC_CODE_INPUT>
-HTTP Method   : GET
-Response code : 200 - When a match is found
-                404 - When no match is found
-Response body : JSON containing the Bank and Branch details on 200 Response code
+# Restwebservice endpoint:
+## Search based on IFSC code:
+Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=<IFSC_CODE_INPUT>  
+HTTP Method   : GET  
+Response code : 200 - When a match is found  
+                404 - When no match is found  
+Response body : JSON containing the Bank and Branch details on 200 Response code  
 
-Example:
---------
+### Example:
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=ABNA0100318
 Response code : 200 
 Response body : 
@@ -43,18 +36,16 @@ Response body :
 "state": "KARNATAKA"
 }
 
-2. Search Based on Bank Name and City:
-----------------------------------------
-Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?bank_name=<BANK_NAME_INPUT>&city=<CITY_INPUT>
-HTTP Method   : GET
-Response code : 200 - When match is found
-                404 - When no match is found
-Response body : JSON containing the List of Branch details on 200 Response code
+## Search Based on Bank Name and City:
+Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?bank_name=<BANK_NAME_INPUT>&city=<CITY_INPUT>  
+HTTP Method   : GET  
+Response code : 200 - When match is found  
+                404 - When no match is found  
+Response body : JSON containing the List of Branch details on 200 Response code  
 
-Example:
---------
-Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?bank_name=ABHYUDAYA COOPERATIVE BANK LIMITED&city=MUMBAI
-Response code : 200 
+### Example:
+Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?bank_name=ABHYUDAYA COOPERATIVE BANK LIMITED&city=MUMBAI  
+Response code : 200   
 Response body : 
 [
 {
@@ -82,12 +73,10 @@ Response body :
 .
 ]
 
-3. Invalid Search based on other combinations:
------------------------------------------------
+## Invalid Search based on other combinations:
 Any invalid Search done based on combinations other than the above 2 will result in 400 (Bad Request) Response code with message "Invalid Search Criteria Provided".
 
-Example:
---------
-Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=ABNA0100318&city=MUMBAI
-Response code : 400
-Response Body : Invalid Search Criteria Provided
+### Example:
+Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=ABNA0100318&city=MUMBAI  
+Response code : 400  
+Response Body : Invalid Search Criteria Provided  
