@@ -26,6 +26,7 @@ Response body : JSON containing the Bank and Branch details on 200 Response code
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?ifsc=ABNA0100318
 Response code : 200 
 Response body : 
+```json
 {
 "bankName": "THE ROYAL BANK OF SCOTLAND N V",
 "branchName": "BANGALORE",
@@ -35,6 +36,7 @@ Response body :
 "district": "BANGALORE URBAN",
 "state": "KARNATAKA"
 }
+```
 
 ## Search Based on Bank Name and City:
 Endpoint      : https://indian-bank-information.herokuapp.com/branch_info?bank_name=<BANK_NAME_INPUT>&city=<CITY_INPUT>  
