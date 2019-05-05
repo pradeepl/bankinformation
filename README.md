@@ -90,7 +90,8 @@ Response Body : Invalid Search Criteria Provided
 ## Query performance is improved for the search based on bank name and city by adding Index
 ### Underlying query that gets executed
 select b.name, br.branch, br.city, br.address, br.city, br.district, br.state from banks b, branches br where br.bank_id = b.id and  upper(b.name) = 'ABHYUDAYA COOPERATIVE BANK LIMITED' and UPPER(city) = 'MUMBAI';
-
+#### Query plan without adding Index
+```
                                                       QUERY PLAN
 ----------------------------------------------------------------------------------------------------------------------
  Nested Loop  (cost=0.00..3057.67 rows=4 width=52) (actual time=0.169..126.418 rows=55 loops=1)
@@ -105,5 +106,27 @@ select b.name, br.branch, br.city, br.address, br.city, br.district, br.state fr
  Planning Time: 1.229 ms
  Execution Time: 126.496 ms
 (11 rows)
+```
+### Indexes Added:
+CREATE INDEX idx_branches_01 ON branches (bank_id, UPPER(branch), UPPER(city));
+CREATE index idx_banks_01 ON banks (UPPER(name));
 
+#### Query Plan after adding above indexes
+```
+                                                              QUERY PLAN                                                
+--------------------------------------------------------------------------------------------------------------------------------------
+ Nested Loop  (cost=0.08..26.59 rows=4 width=52) (actual time=0.060..0.173 rows=55 loops=1)
+   ->  Seq Scan on banks b  (cost=0.00..2.68 rows=1 width=36) (actual time=0.044..0.126 rows=1 loops=1)
+         Filter: (upper((name)::text) = 'ABHYUDAYA COOPERATIVE BANK LIMITED'::text)
+         Rows Removed by Filter: 169
+   ->  Index Scan using idx_branches_01 on branches br  (cost=0.08..23.89 rows=5 width=32) (actual time=0.013..0.035 rows=55 loops=1)
+         Index Cond: ((bank_id = b.id) AND (upper((city)::text) = 'MUMBAI'::text))
+ Planning Time: 0.536 ms
+ Execution Time: 0.200 ms
+(8 rows)
+
+```
+After the addition of indexes we can observe the below improvements.
+1. Query Execution time came down from 126 ms to 0.200 ms.
+2. Instead of a Full table scan on the highly loaded "branches" table, we can see the Index scan which is more efficient. 
 
