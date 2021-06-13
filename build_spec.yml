@@ -1,0 +1,52 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "MAJOR_VERSION" : "12"
+  exportedVariables:
+    - MINOR_VERSION
+    - PATCH_NUMBER
+
+# inputArtifacts:
+#   - name: hello-dev-jar
+#     location: hello123.class
+
+steps:
+  - type: Command
+    name: "Export variables"
+    timeoutInSeconds: 40
+    command: |
+      export MINOR_VERSION=3
+      export PATCH_NUMBER=23
+    onFailure:
+      - type: Command
+        timeoutInSeconds: 40
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 1200
+    name: "Build"
+    command: |
+      cd ${OCI_source1_PROJECT_DIR}
+      mvn clean install
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 40
+        runAs: root
+
+outputArtifacts:
+  - name: output01
+    type: BINARY
+    location: ${OCI_source1_PROJECT_DIR}/target/bankinformation-0.0.1-SNAPSHOT.jar
+  - name: output02
+    type: BINARY
+    location: ${OCI_source1_PROJECT_DIR}/target/bankinformation-0.0.1-SNAPSHOT.jar.original
