@@ -46,7 +46,7 @@ steps:
 outputArtifacts:
   - name: output01
     type: BINARY
-    location: ${OCI_source1_PROJECT_DIR}/target/bankinformation-0.0.1-SNAPSHOT.jar
+    location: ${OCI_WORKSPACE_DIR}/source1/target/bankinformation-0.0.1-SNAPSHOT.jar
   - name: output02
     type: BINARY
-    location: ${OCI_source1_PROJECT_DIR}/target/bankinformation-0.0.1-SNAPSHOT.jar.original
+    location: ${OCI_WORKSPACE_DIR}/source1/target/bankinformation-0.0.1-SNAPSHOT.jar.original
