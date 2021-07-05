@@ -33,7 +33,7 @@ steps:
     timeoutInSeconds: 1200
     name: "Build"
     command: |
-      cd ${OCI_source1_PROJECT_DIR}
+      cd ${OCI_WORKSPACE_DIR}/source1
       mvn clean install
     onFailure:
       - type: Command
