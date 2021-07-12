@@ -9,6 +9,7 @@ env:
   exportedVariables:
     - MINOR_VERSION
     - PATCH_NUMBER
+    - TAG_VERSION
 
 # inputArtifacts:
 #   - name: hello-dev-jar
@@ -21,6 +22,7 @@ steps:
     command: |
       export MINOR_VERSION=4
       export PATCH_NUMBER=25
+      export TAG_VERSION=3.0
     onFailure:
       - type: Command
         timeoutInSeconds: 40
