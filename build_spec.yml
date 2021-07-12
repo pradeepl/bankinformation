@@ -22,7 +22,7 @@ steps:
     command: |
       export MINOR_VERSION=4
       export PATCH_NUMBER=25
-      export TAG_VERSION=3.0
+      export TAG_VERSION=4.0
     onFailure:
       - type: Command
         timeoutInSeconds: 40
