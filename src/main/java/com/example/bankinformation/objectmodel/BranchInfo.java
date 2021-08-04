@@ -22,7 +22,7 @@ public class BranchInfo
   }
 
   public String getBankName() {
-    return bankName;
+    return bankNam;
   }
 
   public void setBankName(String bankName) {
@@ -30,7 +30,7 @@ public class BranchInfo
   }
 
   public String getBranchName() {
-    return branchName;
+    return branchNam;
   }
 
   public void setBranchName(String branchName) {
@@ -38,7 +38,7 @@ public class BranchInfo
   }
 
   public String getIfscCode() {
-    return ifscCode;
+    return ifscCod;
   }
 
   public void setIfscCode(String ifscCode) {
@@ -46,7 +46,7 @@ public class BranchInfo
   }
 
   public String getAddress() {
-    return address;
+    return addres;
   }
 
   public void setAddress(String address) {
