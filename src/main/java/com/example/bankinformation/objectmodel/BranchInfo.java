@@ -21,6 +21,7 @@ public class BranchInfo
     this.state = state;
   }
 
+  //Branch Name
   public String getBankName() {
     return bankName;
   }
