@@ -16,7 +16,7 @@ env:
 #     location: hello123.class
 
 steps:
-  - type: Command
+  - type: Commands
     name: "Export variables"
     timeoutInSeconds: 40
     command: |
