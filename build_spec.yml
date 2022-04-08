@@ -21,7 +21,7 @@ steps:
     configuration:                   # required
       buildType: maven               # required
       pomFilePath: ${OCI_PRIMARY_SOURCE_DIR}/pom.xml # required (Supports parameter substitution)
-      maxPermissibleCvssV2Score: 10.0                # optional (defaults to 0.0)
+      maxPermissibleCvssV2Score: 4.0                # optional (defaults to 0.0)
       maxPermissibleCvssV3Score: 10.0                # optional (defaults to 0.0)
     knowledgeBaseId: ocid1.admknowledgebase.oc1.iad.amaaaaaa4725fbqavluad5ajhaqa7wbhkqyoiqe2zwsyrgwgf4gyibokxmva
     vulnerabilityAuditCompartmentId: ocid1.compartment.oc1..aaaaaaaamimegz6vbad3of5blhrgezxn35d5hrkqyd65ucz47pizitb4elja
