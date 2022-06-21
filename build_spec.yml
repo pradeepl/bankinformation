@@ -20,8 +20,8 @@ steps:
     name: "Export variables"
     timeoutInSeconds: 40
     command: |
-      export MINOR_VERSION=6
-      export PATCH_NUMBER=27
+      export MINOR_VERSION=7
+      export PATCH_NUMBER=28
       export TAG_VERSION=7.0
     onFailure:
       - type: Command
