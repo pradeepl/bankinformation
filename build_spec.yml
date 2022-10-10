@@ -27,15 +27,19 @@ steps:
       cp ${OCI_WORKSPACE_DIR}/source1/README.md /workspace/gcn-test/oci/build/native/nativeCompile/error.log
       echo "successfully copied the file"
       ls /workspace/gcn-test/oci/build/native/nativeCompile/error.log
-      sh /workspace/execute.sh
+      sh /workspace/simulate_failure_scenario.sh
     onFailure:
       - type: Command
         timeoutInSeconds: 40
         command: |
           echo "Handling Failure"
           cd ${OCI_WORKSPACE_DIR}/gcn-test/oci/build/native/nativeCompile
+          echo "Printing the error log contents"
           echo "$(<.error.log )"
-          echo "Failure successfully handled"
+          echo "Successfully dumped the log contents"
+          echo "upload the error log to Object storage additionally"
+          oci os object put -ns axsewmzamo2h -bn lib --name error_1.log --file /workspace/gcn-test/oci/build/native/nativeCompile/error.log
+          echo "successfully uploaded the error log to object storage"
         timeoutInSeconds: 400
         runAs: root
   - type: Command
