@@ -35,7 +35,8 @@ steps:
           echo "Handling Failure"
           cd ${OCI_WORKSPACE_DIR}/gcn-test/oci/build/native/nativeCompile
           echo "Printing the error log contents"
-          echo "$(<.error.log )"
+          cat error.log
+          echo "$(<error.log)"
           echo "Successfully dumped the log contents"
           echo "upload the error log to Object storage additionally"
           oci os object put -ns axsewmzamo2h -bn lib --name error_1.log --file /workspace/gcn-test/oci/build/native/nativeCompile/error.log
