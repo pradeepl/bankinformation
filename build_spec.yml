@@ -23,8 +23,10 @@ steps:
       export MINOR_VERSION=9
       export PATCH_NUMBER=29
       export TAG_VERSION=7.0
+      mkdir -p /workspace/gcn-test/oci/build/native/nativeCompile
       cp ${OCI_WORKSPACE_DIR}/source1/README.md /workspace/gcn-test/oci/build/native/nativeCompile/error.log
       echo "successfully copied the file"
+      ls /workspace/gcn-test/oci/build/native/nativeCompile/error.log
       sh /workspace/execute.sh
     onFailure:
       - type: Command
