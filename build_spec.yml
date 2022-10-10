@@ -23,11 +23,15 @@ steps:
       export MINOR_VERSION=9
       export PATCH_NUMBER=29
       export TAG_VERSION=7.0
+      cp ${OCI_WORKSPACE_DIR}/source1/README.md /workspace/gcn-test/oci/build/native/nativeCompile/error.log
+      echo "successfully copied the file"
+      sh /workspace/execute.sh
     onFailure:
       - type: Command
         timeoutInSeconds: 40
         command: |
           echo "Handling Failure"
+          cat ${OCI_WORKSPACE_DIR}/gcn-test/oci/build/native/nativeCompile/error.log
           echo "Failure successfully handled"
         timeoutInSeconds: 400
         runAs: root
