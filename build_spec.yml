@@ -33,9 +33,8 @@ steps:
         timeoutInSeconds: 40
         command: |
           echo "Handling Failure"
-          cd ${OCI_WORKSPACE_DIR}/gcn-test/oci/build/native/nativeCompile
+          cd /workspace/gcn-test/oci/build/native/nativeCompile
           echo "Printing the error log contents"
-          cat error.log
           echo "$(<error.log)"
           echo "Successfully dumped the log contents"
           echo "upload the error log to Object storage additionally"
